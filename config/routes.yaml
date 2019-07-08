@@ -1,0 +1,61 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+# ------------HOMEPAGE--------------#
+app_homepage:
+    path: /
+    controller: App\Controller\HomeController::index
+# ------------PRODUCT--------------#
+app_products_route:
+    resource: routes_perso/app_products.yaml
+    prefix: /admin/products
+    name_prefix: app_products_
+app_products_liste:
+    path: /products/liste
+    controller: App\Controller\ProductController::liste
+    methods: ['GET']
+app_products_show:
+    path: /products/{slug}
+    controller: App\Controller\ProductController::show
+    requirements:
+        slug: '[a-z0-9\-]+'
+    methods: ['GET']
+# ------------API-METEO&PDF--------------#
+app_api_meteo:
+    path: /admin/meteo
+    controller: App\Controller\ApiController::meteo
+app_download_pdf:
+    path: /download/pdf
+    controller: App\Controller\ApiController::pdf
+# ------------TAG--------------#
+app_tag_liste:
+    path: /tag/liste
+    controller: App\Controller\TagController::liste
+    methods: ['GET']
+app_tag_create:
+    path: /admin/tag/create
+    controller: App\Controller\TagController::create
+    methods: ['GET', 'POST']
+app_tag_update:
+    path: /admin/tag/update/{id}
+    controller: App\Controller\TagController::update
+    requirements:
+        slug: '[0-9]+'
+    methods: ['GET', 'POST']
+app_tag_delete:
+    path: /admin/tag/delete/{id}
+    controller: App\Controller\TagController::delete
+    requirements:
+        slug: '[0-9]+'
+    methods: ['GET', 'POST']
+# ------------LOGIN&LOGOUT&USER--------------#
+app_logout:
+    path: /logout
+app_user_liste:
+    path: /admin/user/liste
+    controller: App\Controller\AdminController::liste
+# ------------------ADMIN--------------------#
+app_admin_user:
+    resource: routes_perso/admin_user.yaml
+    prefix: /admin/user
+    name_prefix: admin_user_

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des produits{% endblock %}
+
+{% block body %}
+    <h1>Liste des produits</h1>
+    <main class="container">
+        <h1 class="mt-2">Présentation des produits</h1>
+        {% include 'products/product_paginate.html.twig' with {products : products} %}
+
+    </main>
+{% endblock %}
