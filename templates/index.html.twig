@@ -2,7 +2,7 @@
 
 {% block body %}
     <h1 style="text-align: center">Bonjour (depuis twig)</h1>
-    <main style="width: 100%; height: auto; ">
+  {#  <main style="width: 100%; height: auto; ">
         <section style="display: flex; flex-direction: row; ">
             <p style="width: 50%; height: auto; background: lightgrey; padding: 10px;">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci commodi culpa dolor dolorem eaque,
@@ -16,10 +16,10 @@
 
 
         <h1 class="mt-2">Présentation des produits</h1>
-        {% include 'products/product_paginate.html.twig' with {products : paginatedResults} %}
+        {% include '#' with {products : paginatedResults} %}
 
         <div class="navigation">
             {{ knp_pagination_render(paginatedResults) }}
         </div>
-    </main>
+    </main>#}
 {% endblock %}

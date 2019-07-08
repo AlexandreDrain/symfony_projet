@@ -5,50 +5,43 @@
 app_homepage:
     path: /
     controller: App\Controller\HomeController::index
-# ------------PRODUCT--------------#
-app_products_route:
-    resource: routes_perso/app_products.yaml
-    prefix: /admin/products
-    name_prefix: app_products_
-app_products_liste:
-    path: /products/liste
-    controller: App\Controller\ProductController::liste
+# ------------SERVICE--------------#
+app_services_route:
+    resource: routes_perso/app_services.yaml
+    prefix: /admin/services
+    name_prefix: app_services_
+app_services_liste:
+    path: /services/liste
+    controller: App\Controller\ServiceController::liste
     methods: ['GET']
-app_products_show:
-    path: /products/{slug}
-    controller: App\Controller\ProductController::show
+app_services_show:
+    path: /services/{slug}
+    controller: App\Controller\ServiceController::show
     requirements:
         slug: '[a-z0-9\-]+'
     methods: ['GET']
-# ------------API-METEO&PDF--------------#
-app_api_meteo:
-    path: /admin/meteo
-    controller: App\Controller\ApiController::meteo
-app_download_pdf:
-    path: /download/pdf
-    controller: App\Controller\ApiController::pdf
-# ------------TAG--------------#
-app_tag_liste:
-    path: /tag/liste
-    controller: App\Controller\TagController::liste
+# ------------CATEGORY--------------#
+app_category_route:
+    resource: routes_perso/app_category.yaml
+    prefix: /admin/category
+    name_prefix: app_category_
+app_category_liste:
+    path: /category/liste
+    controller: App\Controller\CategoryController::liste
     methods: ['GET']
-app_tag_create:
-    path: /admin/tag/create
-    controller: App\Controller\TagController::create
-    methods: ['GET', 'POST']
-app_tag_update:
-    path: /admin/tag/update/{id}
-    controller: App\Controller\TagController::update
+app_category_show:
+    path: /category/{slug}
+    controller: App\Controller\CategoryController::show
     requirements:
-        slug: '[0-9]+'
-    methods: ['GET', 'POST']
-app_tag_delete:
-    path: /admin/tag/delete/{id}
-    controller: App\Controller\TagController::delete
-    requirements:
-        slug: '[0-9]+'
-    methods: ['GET', 'POST']
+        slug: '[a-z0-9\-]+'
+    methods: ['GET']
 # ------------LOGIN&LOGOUT&USER--------------#
+app_register:
+    path: /register
+    controller: App\Controller\RegistrationController::register
+app_login:
+    path: /login
+    controller: App\Controller\RegistrationController::login
 app_logout:
     path: /logout
 app_user_liste:

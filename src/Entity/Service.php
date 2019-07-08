@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
+use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ServiceRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Service
 {
@@ -48,9 +50,50 @@ class Service
      */
     private $users;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="services")
+     */
+    private $category;
+
+    /**
+     * @ORM\Column(type="string", length=128, unique=true)
+     */
+    private $slug;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+    }
+
+    /**
+     * @ORM\PreUpdate()
+     */
+    public function refreshUpdatedAt()
+    {
+        $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function refreshCreateddAt()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updateSlug();
+    }
+
+    /**
+     * Met a jour le slug par rapport au name
+     * @return Service
+     */
+    public function updateSlug(): self
+    {
+        // On récupère le slugger
+        $slugify = new Slugify();
+        // mise a jour du slug par rapport au name
+        $this->slug = $slugify->slugify($this->label);
+        // Pour le chainage
+        return $this;
     }
 
     public function getId(): ?int
@@ -142,6 +185,30 @@ class Service
             $this->users->removeElement($user);
             $user->removeService($this);
         }
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

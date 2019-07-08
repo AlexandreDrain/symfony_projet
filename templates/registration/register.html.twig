@@ -6,15 +6,10 @@
     <h1>Register</h1>
 
     {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.userName) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword) }}
-    {#<input type="radio" id="ROLE_MODERATEUR" name="roles" value="ROLE_MODERATEUR">
-    <label for="ROLE_MODERATEUR" id="ROLE_MODERATEUR">Moderateur</label>
-    <input type="radio" id="ROLE_ADMIN" name="roles" value="ROLE_ADMIN">
-    <label for="ROLE_ADMIN" id="ROLE_ADMIN">Admin</label>
-    <input type="radio" id="ROLE_SUPER_ADMIN" name="roles" value="ROLE_SUPER_ADMIN">
-    <label for="ROLE_SUPER_ADMIN" id="ROLE_SUPER_ADMIN">Super-Admin</label>
-    <br>#}
-    <input type="submit" class="btn btn-success" value="S'inscrire" >
+
+        <button class="btn">Register</button>
     {{ form_end(registrationForm) }}
 {% endblock %}

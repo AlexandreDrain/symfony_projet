@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Service index{% endblock %}
+
+{% block body %}
+    <h1>Service index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Label</th>
+                <th>ImageName</th>
+                <th>CreatedAt</th>
+                <th>DescriptionService</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for service in services %}
+            <tr>
+                <td>{{ service.id }}</td>
+                <td>{{ service.label }}</td>
+                <td>{{ service.imageName }}</td>
+                <td>{{ service.createdAt ? service.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ service.descriptionService }}</td>
+                <td>
+                    <a href="{{ path('app_services_update', {'slug': service.id}) }}" class="btn btn-outline-warning">Modifier</a>
+                    <a href="{{ path('app_services_delete', {'slug': service.id}) }}" class="btn btn-outline-danger">Supprimer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_services_create') }}" class="btn btn-outline-success">Create new</a>
+{% endblock %}

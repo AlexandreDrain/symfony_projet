@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Category index{% endblock %}
+{% block title %}Liste de Catégories{% endblock %}
 
 {% block body %}
-    <h1>Category index</h1>
+    <h1>Liste de Catégories</h1>
 
     <table class="table">
         <thead>
@@ -19,17 +19,17 @@
                 <td>{{ category.id }}</td>
                 <td>{{ category.name }}</td>
                 <td>
-                    <a href="{{ path('category_show', {'id': category.id}) }}" class="btn btn-warning">show</a>
-                    <a href="{{ path('category_edit', {'id': category.id}) }}" class="btn btn-danger">edit</a>
+                    <a href="{{ path('app_category_update', {'slug': category.id}) }}" class="btn-outline-warning">Modifier</a>
+                    <a href="{{ path('app_category_delete', {'slug': category.id}) }}" class="btn-outline-danger">Supprimer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">Pas de catégories trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('category_new') }}" class="btn btn-info">Create new</a>
+    <a href="{{ path('app_category_create') }}">Créer une nouvelle catégorie</a>
 {% endblock %}

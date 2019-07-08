@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Service{% endblock %}
+
+{% block body %}
+    <h1>Service</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ service.id }}</td>
+            </tr>
+            <tr>
+                <th>Label</th>
+                <td>{{ service.label }}</td>
+            </tr>
+            <tr>
+                <th>ImageName</th>
+                <td>{{ service.imageName }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ service.createdAt ? service.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ service.updatedAt ? service.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DescriptionService</th>
+                <td>{{ service.descriptionService }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_services_liste') }}">back to list</a>
+
+    <a href="{{ path('app_servicess_update', {'slug': service.id}) }}">edit</a>
+
+    {{ include('service/_delete_form.html.twig') }}
+{% endblock %}
