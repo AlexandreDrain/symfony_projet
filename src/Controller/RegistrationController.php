@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\AppAuthAuthenticator;
-use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,6 +32,12 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $datas = $request->request->get('registration_form', []);
+
+            if (array_key_exists('falseRoles', $datas)) {
+                $user->setRoles([$datas['falseRoles']]);
+            }
+
             // encode the plain password
             $user->setPassword(
                 $passwordEncoder->encodePassword(
@@ -57,26 +62,6 @@ class RegistrationController extends AbstractController
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
-        ]);
-    }
-    /**
-     * @param User $user
-     * @param Request $request
-     * @param ObjectManager $manager
-     * @return Response
-     */
-    public function changeRole(User $user, Request $request, ObjectManager $manager): Response
-    {
-        $form = $this->createForm(RoleType::class, $user);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $manager->flush();
-            $this->addFlash('success', 'Vous avez bien modfié un role');
-            return $this->redirectToRoute('app_user_liste');
-        }
-        return $this->render('admin/user/change-role.html.twig', [
-            'form' => $form->createView(),
-            'user' => $user
         ]);
     }
 

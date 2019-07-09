@@ -6,10 +6,13 @@ use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ServiceRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @Vich\Uploadable
  */
 class Service
 {
@@ -31,6 +34,12 @@ class Service
     private $imageName;
 
     /**
+     * @var File
+     * @Vich\UploadableField(mapping="Image_du_produit", fileNameProperty="imageName")
+     */
+    private $imageFile;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
@@ -46,7 +55,7 @@ class Service
     private $descriptionService;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="service")
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="service")
      */
     private $users;
 
@@ -118,7 +127,7 @@ class Service
         return $this->imageName;
     }
 
-    public function setImageName(string $imageName): self
+    public function setImageName(?string $imageName = null): self
     {
         $this->imageName = $imageName;
 
@@ -211,5 +220,24 @@ class Service
         $this->slug = $slug;
 
         return $this;
+    }
+
+    /**
+     * @return File
+     */
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+    /**
+     * @param File $imageFile
+     * @throws \Exception
+     */
+    public function setImageFile(?File $imageFile = null): void
+    {
+        if (!is_null($imageFile)) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+        $this->imageFile = $imageFile;
     }
 }

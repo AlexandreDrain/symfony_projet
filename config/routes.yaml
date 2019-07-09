@@ -5,6 +5,15 @@
 app_homepage:
     path: /
     controller: App\Controller\HomeController::index
+# ------------CONTACT--------------#
+app_contact_liste:
+    path: /contact/liste
+    controller: App\Controller\UserController::index
+    methods: ['GET']
+app_contact_show:
+    path: /contact/show/{slug}
+    controller: App\Controller\UserController::show
+    methods: ['GET']
 # ------------SERVICE--------------#
 app_services_route:
     resource: routes_perso/app_services.yaml
@@ -44,9 +53,6 @@ app_login:
     controller: App\Controller\RegistrationController::login
 app_logout:
     path: /logout
-app_user_liste:
-    path: /admin/user/liste
-    controller: App\Controller\AdminController::liste
 # ------------------ADMIN--------------------#
 app_admin_user:
     resource: routes_perso/admin_user.yaml

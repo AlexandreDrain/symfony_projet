@@ -3,39 +3,31 @@
 {% block title %}Service index{% endblock %}
 
 {% block body %}
-    <h1>Service index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Label</th>
-                <th>ImageName</th>
-                <th>CreatedAt</th>
-                <th>DescriptionService</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <section class="row">
         {% for service in services %}
-            <tr>
-                <td>{{ service.id }}</td>
-                <td>{{ service.label }}</td>
-                <td>{{ service.imageName }}</td>
-                <td>{{ service.createdAt ? service.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ service.descriptionService }}</td>
-                <td>
-                    <a href="{{ path('app_services_update', {'slug': service.id}) }}" class="btn btn-outline-warning">Modifier</a>
-                    <a href="{{ path('app_services_delete', {'slug': service.id}) }}" class="btn btn-outline-danger">Supprimer</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
+            <div class="col-4">
+                <div class="card">
+                    <img src="{{ vich_uploader_asset(service, 'imageFile') }}" class="card-img-top"
+                         alt="Image de {{ service.label }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ service.label }}</h5>
+                        <p class="card-text"><strong>Publié par : </strong>{{ service.users | join(',') }}</p>
+                        <p class="card-text">{{ service.descriptionService | nl2br | slice(0,50)}}</p>
+                        <p class="card-text"><strong>Publié le : </strong>{{ service.createdAt | date('d/m/y à H:i') }}</p>
+                        <p class="card-text"><strong>Catégorie(s) : </strong>{{ service.category.name }}</p>
+                        <div class="btn-group">
+                            <a href="{{ path('app_services_show', {'slug' : service.slug}) }}" class="card-link btn btn-outline-info">Détail</a>
+                            {% if service.getUsers() == app.user or is_granted('ROLE_MODERATEUR')%}
+                                <a href="{{ path('app_services_update', {'slug' : service.slug}) }}"
+                                   class="card-link btn btn-outline-warning">Modifier</a>
+                            {% endif %}
+                            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                {% include '/service/_delete_form.html.twig' %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_services_create') }}" class="btn btn-outline-success">Create new</a>
+    </section>
 {% endblock %}

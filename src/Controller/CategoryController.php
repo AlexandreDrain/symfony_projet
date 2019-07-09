@@ -39,7 +39,7 @@ class CategoryController extends AbstractController
             $entityManager->persist($category);
             $entityManager->flush();
 
-            return $this->redirectToRoute('category_index');
+            return $this->redirectToRoute('app_category_liste');
         }
 
         return $this->render('category/new.html.twig', [
@@ -72,7 +72,7 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('category_index', [
+            return $this->redirectToRoute('app_category_liste', [
                 'id' => $category->getId(),
             ]);
         }
@@ -96,6 +96,6 @@ class CategoryController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('category_index');
+        return $this->redirectToRoute('app_category_liste');
     }
 }

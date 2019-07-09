@@ -34,9 +34,8 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_services_liste') }}">back to list</a>
-
-    <a href="{{ path('app_servicess_update', {'slug': service.id}) }}">edit</a>
-
-    {{ include('service/_delete_form.html.twig') }}
+    <a href="{{ path('app_services_liste') }}" class="btn btn-outline-success">Retour vers la liste des produits</a>
+    {% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_GARAGISTE') and %}
+        {{ include('service/_delete_form.html.twig') }}
+    {% endif %}
 {% endblock %}

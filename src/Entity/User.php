@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"email"}, message="Il y a déjà un compte avec ce mail, veuillez en utiliser un autre")
  */
 class User implements UserInterface
 {
@@ -42,7 +42,7 @@ class User implements UserInterface
     private $roles = [];
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Service", inversedBy="users")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Service", mappedBy="users")
      */
     private $service;
 
