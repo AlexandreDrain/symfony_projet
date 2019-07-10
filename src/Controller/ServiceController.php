@@ -5,9 +5,11 @@ namespace App\Controller;
 use App\Entity\Service;
 use App\Form\ServiceType;
 use App\Repository\ServiceRepository;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 
 class ServiceController extends AbstractController
@@ -25,18 +27,22 @@ class ServiceController extends AbstractController
 
     /**
      * @param Request $request
+     * @param ObjectManager $entityManager
+     * @param UserInterface $user
      * @return Response
      */
-    public function new(Request $request): Response
+    public function new(Request $request, ObjectManager $entityManager, UserInterface $user): Response
     {
         $service = new Service();
         $form = $this->createForm(ServiceType::class, $service);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
+            $service->setPublisher($user);
             $entityManager->persist($service);
             $entityManager->flush();
+
+            $this->addFlash('success', 'le produit a bien était ajouté');
 
             return $this->redirectToRoute('app_services_liste');
         }

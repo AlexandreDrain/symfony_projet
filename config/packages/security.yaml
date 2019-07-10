@@ -33,13 +33,13 @@ security:
 
     #  Hièrarchie des rôles
     role_hierarchy:
-        ROLE_MODERTEUR: ROLE_USER
-        ROLE_ADMIN: ROLE_MODERATEUR
+        ROLE_GARAGISTE: ROLE_USER
+        ROLE_ADMIN: ROLE_GARAGISTE
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     # Définition des droits d'accès
     access_control:
         - { path: ^/admin/products/suppression, roles: ROLE_SUPER_ADMIN }
-        - { path: ^/admin/products/update, roles: ROLE_ADMIN }
-        - { path: ^/admin, roles: ROLE_MODERATEUR }
+        - { path: ^/admin/products/update, roles: ROLE_GARAGISTE }
+        - { path: ^/admin, roles: ROLE_GARAGISTE }
         - { path: ^/profile, roles: ROLE_USER }

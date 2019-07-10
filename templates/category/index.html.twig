@@ -19,8 +19,10 @@
                 <td>{{ category.id }}</td>
                 <td>{{ category.name }}</td>
                 <td>
-                    <a href="{{ path('app_category_update', {'slug': category.id}) }}" class="btn-outline-warning">Modifier</a>
-                    <a href="{{ path('app_category_delete', {'slug': category.id}) }}" class="btn-outline-danger">Supprimer</a>
+                    <a href="{{ path('app_category_update', {'slug': category.slug}) }}" class="btn btn-outline-warning">Modifier</a>
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                        {% include '/category/_delete_form.html.twig' %}
+                    {% endif %}
                 </td>
             </tr>
         {% else %}

@@ -20,7 +20,6 @@ class ServiceType extends AbstractType
             ->add('createdAt')
             ->add('descriptionService')
             ->add('category')
-            ->add('users')
         ;
     }
 

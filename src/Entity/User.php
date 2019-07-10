@@ -42,14 +42,15 @@ class User implements UserInterface
     private $roles = [];
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Service", mappedBy="users")
+     * @ORM\OneToMany(targetEntity="App\Entity\Service", mappedBy="publisher")
      */
-    private $service;
+    private $services;
 
     public function __construct()
     {
-        $this->service = new ArrayCollection();
+        $this->services = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -120,32 +121,6 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Service[]
-     */
-    public function getService(): Collection
-    {
-        return $this->service;
-    }
-
-    public function addService(Service $service): self
-    {
-        if (!$this->service->contains($service)) {
-            $this->service[] = $service;
-        }
-
-        return $this;
-    }
-
-    public function removeService(Service $service): self
-    {
-        if ($this->service->contains($service)) {
-            $this->service->removeElement($service);
-        }
-
-        return $this;
-    }
-
-    /**
      * Returns the salt that was originally used to encode the password.
      *
      * This can return null if the password was not encoded using a salt.
@@ -161,10 +136,42 @@ class User implements UserInterface
      * Removes sensitive data from the user.
      *
      * This is important if, at any given point, sensitive information like
+     *
      * the plain-text password is stored on this object.
      */
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
+    }
+
+    /**
+     * @return Collection|Service[]
+     */
+    public function getServices(): Collection
+    {
+        return $this->services;
+    }
+
+    public function addService(Service $service): self
+    {
+        if (!$this->services->contains($service)) {
+            $this->services[] = $service;
+            $service->setPublisher($this);
+        }
+
+        return $this;
+    }
+
+    public function removeService(Service $service): self
+    {
+        if ($this->services->contains($service)) {
+            $this->services->removeElement($service);
+            // set the owning side to null (unless already changed)
+            if ($service->getPublisher() === $this) {
+                $service->setPublisher(null);
+            }
+        }
+
+        return $this;
     }
 }

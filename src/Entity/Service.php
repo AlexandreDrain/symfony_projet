@@ -55,11 +55,6 @@ class Service
     private $descriptionService;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="service")
-     */
-    private $users;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="services")
      */
     private $category;
@@ -69,10 +64,10 @@ class Service
      */
     private $slug;
 
-    public function __construct()
-    {
-        $this->users = new ArrayCollection();
-    }
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="services")
+     */
+    private $publisher;
 
     /**
      * @ORM\PreUpdate()
@@ -170,34 +165,6 @@ class Service
         return $this;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->addService($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->users->contains($user)) {
-            $this->users->removeElement($user);
-            $user->removeService($this);
-        }
-
-        return $this;
-    }
-
     public function getCategory(): ?Category
     {
         return $this->category;
@@ -239,5 +206,17 @@ class Service
             $this->updatedAt = new \DateTimeImmutable();
         }
         $this->imageFile = $imageFile;
+    }
+
+    public function getPublisher(): ?User
+    {
+        return $this->publisher;
+    }
+
+    public function setPublisher(?User $publisher): self
+    {
+        $this->publisher = $publisher;
+
+        return $this;
     }
 }

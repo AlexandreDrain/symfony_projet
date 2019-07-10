@@ -1,13 +1,8 @@
 <?php
 namespace App\Controller;
 
-use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\ORM\Query;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
@@ -18,6 +13,13 @@ class HomeController extends AbstractController
     public function index(): Response
     {
         return $this->render('index.html.twig');
+    }
+
+    public function getGlobals() {
+
+        return $this->render('base.html.twig', [
+            'session'   => $_SESSION
+            ]) ;
     }
 
 }
