@@ -31,12 +31,16 @@
                 <th>Categorie du service</th>
                 <td>{{ service.category }}</td>
             </tr>
+            <tr>
+                <th>Horaire d'ouverture</th>
+                <td><img style="max-width: 250px;" src="/assets/images/uploads/horaire/{{ service.imageHoraireName }}" class="card-img-top" alt="Horaire du garage de {{ service.publisher }}"></td>
+            </tr>
         </tbody>
     </table>
 
     <a href="{{ path('app_services_liste') }}" class="btn btn-outline-success">Retour vers la liste des produits</a>
     {% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_GARAGISTE') %}
-        {% if service.getUsers() == app.user%}
+        {% if service.getPublisher() == app.user%}
             {{ include('service/_delete_form.html.twig') }}
         {% endif %}
     {% endif %}

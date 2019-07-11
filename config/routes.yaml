@@ -35,14 +35,8 @@ app_category_route:
     prefix: /admin/category
     name_prefix: app_category_
 app_category_liste:
-    path: /category/liste
+    path: /admin/category/liste
     controller: App\Controller\CategoryController::liste
-    methods: ['GET']
-app_category_show:
-    path: /category/{slug}
-    controller: App\Controller\CategoryController::show
-    requirements:
-        slug: '[a-z0-9\-]+'
     methods: ['GET']
 # ------------LOGIN&LOGOUT&USER--------------#
 app_register:

@@ -20,16 +20,14 @@ class UserController extends AbstractController
         ]);
     }
 
-    /**
-     * @param User $user
-     * @return Response
-     */
-    public function show(User $user): Response
-    {
-        return $this->render('contact/show.html.twig', [
-            'user' => $user,
-        ]);
-    }
-
-
+//    /**
+//     * @param User $user
+//     * @return Response
+//     */
+//    public function show(User $user): Response
+//    {
+//        return $this->render('contact/show.html.twig', [
+//            'user' => $user,
+//        ]);
+//    }
 }

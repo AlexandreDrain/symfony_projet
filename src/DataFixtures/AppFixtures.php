@@ -37,14 +37,13 @@ class AppFixtures extends Fixture
         $populator->addEntity(User::class, 20);
         $populator->addEntity(Produit::class, 197, [
                 'price' => function () use ($generator) {
-                    return $generator->randomFloat(2,0, 9999999.99);
+                    return $generator->randomFloat(2, 0, 9999999.99);
                 },
                 'imageName' => function () use ($images) {
-                    return $images[rand(0,sizeof($images) - 1)];
+                    return $images[rand(0, sizeof($images) - 1)];
                 }
             ]);
         // Flush
         $populator->execute();
     }
-
 }

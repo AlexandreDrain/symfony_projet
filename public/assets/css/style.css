@@ -18,14 +18,16 @@ header {
     justify-content: space-between;
 }
 header figure img {
-    width: 400px;
-    height: 198px;
+    width: 300px;
+    height: auto;
+}
+header figure {
+    margin: 0;
 }
 header figure figcaption {
     display: none;
 }
 header h1 {
-    text-decoration: bold;
     border: 1px solid black;
     padding: 10px;
     margin: auto;

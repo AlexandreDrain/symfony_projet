@@ -40,6 +40,17 @@ class Service
     private $imageFile;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $imageHoraireName;
+
+    /**
+     * @var File
+     * @Vich\UploadableField(mapping="Image_des_horaires", fileNameProperty="imageHoraireName")
+     */
+    private $imageHoraireFile;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
@@ -117,18 +128,6 @@ class Service
         return $this;
     }
 
-    public function getImageName(): ?string
-    {
-        return $this->imageName;
-    }
-
-    public function setImageName(?string $imageName = null): self
-    {
-        $this->imageName = $imageName;
-
-        return $this;
-    }
-
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
@@ -189,6 +188,29 @@ class Service
         return $this;
     }
 
+    public function getPublisher(): ?User
+    {
+        return $this->publisher;
+    }
+
+    public function setPublisher(?User $publisher): self
+    {
+        $this->publisher = $publisher;
+
+        return $this;
+    }
+//----------------------imageName-----------------------//
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    public function setImageName(?string $imageName = null): self
+    {
+        $this->imageName = $imageName;
+
+        return $this;
+    }
     /**
      * @return File
      */
@@ -207,16 +229,36 @@ class Service
         }
         $this->imageFile = $imageFile;
     }
-
-    public function getPublisher(): ?User
+//----------------------imageHoraireName-----------------------//
+    /**
+     * @return mixed
+     */
+    public function getImageHoraireName()
     {
-        return $this->publisher;
+        return $this->imageHoraireName;
     }
 
-    public function setPublisher(?User $publisher): self
+    /**
+     * @param mixed $imageHoraireName
+     */
+    public function setImageHoraireName($imageHoraireName): void
     {
-        $this->publisher = $publisher;
+        $this->imageHoraireName = $imageHoraireName;
+    }
+    /**
+     * @return File
+     */
+    public function getImageHoraireFile(): ?File
+    {
+        return $this->imageHoraireFile;
+    }
 
-        return $this;
+    /**
+     * @param File $imageHoraireFile
+     * @throws \Exception
+     */
+    public function setImageHoraireFile(?File $imageHoraireFile = null): void
+    {
+        $this->imageHoraireFile = $imageHoraireFile;
     }
 }

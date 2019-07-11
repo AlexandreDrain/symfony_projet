@@ -13,13 +13,22 @@ class ServiceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('label')
+            ->add('label', null, [
+                'label' => 'Nom de votre service'
+            ])
             ->add('ImageFile', FileType::class, [
                 'label' => 'Choisir une image'
             ])
-            ->add('createdAt')
+            ->add('createdAt', null, [
+                'label' => 'Créé à :'
+            ])
             ->add('descriptionService')
-            ->add('category')
+            ->add('imageHoraireFile', FileType::class, [
+                'label' => 'Veuillez indiqué vos horaires d\'ouverture'
+            ])
+            ->add('category', null, [
+                'label' => 'Catégorie de votre service'
+            ])
         ;
     }
 

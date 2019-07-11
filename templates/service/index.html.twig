@@ -11,7 +11,7 @@
                          alt="Image de {{ service.label }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ service.label }}</h5>
-                        <p class="card-text"><strong>Publié par : </strong>{{ service.publisher | join(',') }}</p>
+                        <p class="card-text"><strong>Publié par : </strong>{{ service.publisher }}</p>
                         <p class="card-text">{{ service.descriptionService | nl2br | slice(0,50)}}</p>
                         <p class="card-text"><strong>Publié le : </strong>{{ service.createdAt | date('d/m/y à H:i') }}</p>
                         <p class="card-text"><strong>Catégorie(s) : </strong>{{ service.category.name }}</p>

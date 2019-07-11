@@ -15,11 +15,11 @@ class HomeController extends AbstractController
         return $this->render('index.html.twig');
     }
 
-    public function getGlobals() {
+    public function getGlobals()
+    {
 
         return $this->render('base.html.twig', [
             'session'   => $_SESSION
             ]) ;
     }
-
 }
