@@ -8,7 +8,6 @@ body {
     //background-image: url(/assets/images/font/fondSteel.jpg);
     //background-image: url(/assets/images/font/fondSteel3.jpg);
 }
-
 header {
     width: 100%;
     height: auto;
@@ -42,17 +41,42 @@ header div {
     border-bottom: 1px solid black;
     color: black;
 }
-main section.HomePage {
-    display: flex;
-    flex-direction: row;
-    border: 1px solid black;
-    border-radius: 10px;
-    box-shadow: 5px 5px 10px black;
-    background: lightgrey;
+main {
+    width: 95%;
+    margin: auto;
+    box-shadow: 5px 5px 20px;
 }
-main section.HomePage article p {
-    width: 50%;
+main section {
+    margin: 35px 0;
+    width: 100%;
     height: auto;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    background: lightgray;
+    padding: 10px 0 0 0;
+}
+main section#listeService {
+    display: flex;
+    flex-wrap: wrap;
+}
+main section#listeService article {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    min-width: 300px;
+}
+
+main section h2 {
+    text-align: center;
+    color: black;
+    text-decoration: underline;
+    font-family: 'Indie Flower', cursive, Arial, SansSerif, "Times New Roman";
+}
+main section article {
+    padding: 10px 50px;
+}
+main section article p {
+    font-family: 'Cantarell', Arial, SansSerif, "Times New Roman", cursive;
 }
 footer {
     width: 100%;
@@ -69,15 +93,12 @@ footer section:first-child, footer section:last-child {
     height: auto;
     display: flex;
     flex-wrap: wrap;
+    font-family: 'Cantarell', Arial, SansSerif, "Times New Roman", cursive;
 }
 footer section:first-child a {
     width: 50%;
     height: auto;
     display: block;
-    /*	position: relative;
-        top: 0;
-        transform-style: preserve-3d;
-        transition: 2s;*/
 }
 footer section:first-child a:hover {
     text-decoration: none;
@@ -99,5 +120,4 @@ footer section:first-child a figure, figcaption {
     header div {
         border: 1px solid black;
     }
-
 }

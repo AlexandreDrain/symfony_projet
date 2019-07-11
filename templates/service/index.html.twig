@@ -3,31 +3,25 @@
 {% block title %}Service liste{% endblock %}
 
 {% block body %}
-    <section class="row container" style="padding: 50px 0 50px 0;">
+    <section id="listeService">
         {% for service in services %}
-            <div class="col-4">
-                <div class="card">
-                    <img src="{{ vich_uploader_asset(service, 'imageFile') }}" class="card-img-top"
-                         alt="Image de {{ service.label }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ service.label }}</h5>
-                        <p class="card-text"><strong>Publié par : </strong>{{ service.publisher }}</p>
-                        <p class="card-text">{{ service.descriptionService | nl2br | slice(0,50)}}</p>
-                        <p class="card-text"><strong>Publié le : </strong>{{ service.createdAt | date('d/m/y à H:i') }}</p>
-                        <p class="card-text"><strong>Catégorie(s) : </strong>{{ service.category.name }}</p>
-                        <div class="btn-group">
-                            <a href="{{ path('app_services_show', {'slug' : service.slug}) }}" class="card-link btn btn-outline-info">Détail</a>
-                            {% if service.getPublisher() == app.user and is_granted('ROLE_GARAGISTE')%}
-                                <a href="{{ path('app_services_update', {'slug' : service.slug}) }}"
-                                   class="card-link btn btn-outline-warning">Modifier</a>
-                            {% endif %}
-                            {% if is_granted('ROLE_SUPER_ADMIN') %}
-                                {% include '/service/_delete_form.html.twig' %}
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <article>
+                <img src="{{ vich_uploader_asset(service, 'imageFile') }}" alt="Image de {{ service.label }}">
+                <h5>{{ service.label }}</h5>
+                <p><strong>Publié par : </strong>{{ service.publisher }}</p>
+                <p>{{ service.descriptionService | nl2br | slice(0,50)}}</p>
+                <p><strong>Publié le : </strong>{{ service.createdAt | date('d/m/y à H:i') }}</p>
+                <p><strong>Catégorie(s) : </strong>{{ service.category.name }}</p>
+                <footer>
+                    <a href="{{ path('app_services_show', {'slug' : service.slug}) }}">Détail</a>
+                    {% if service.getPublisher() == app.user and is_granted('ROLE_GARAGISTE')%}
+                        <a href="{{ path('app_services_update', {'slug' : service.slug}) }}">Modifier</a>
+                    {% endif %}
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                        {% include '/service/_delete_form.html.twig' %}
+                    {% endif %}
+                </footer>
+            </article>
         {% endfor %}
     </section>
 {% endblock %}
