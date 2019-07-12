@@ -2,10 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Message;
 use App\Entity\Service;
+use App\Form\MessageType;
 use App\Form\ServiceType;
 use App\Repository\ServiceRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+use Swift_Mailer;
+use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -54,12 +58,29 @@ class ServiceController extends AbstractController
 
     /**
      * @param Service $service
+     * @param Request $request
+     * @param Message $message
+     * @param Swift_Mailer $mailer
      * @return Response
      */
-    public function show(Service $service): Response
+    public function show(Service $service, Request $request, Message $message, Swift_Mailer $mailer, UserInterface $user): Response
     {
+
+        $form = $this->createForm(MessageType::class, $message);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $message->setPublisher($user);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($message);
+            $entityManager->flush();
+
+            $this->email($mailer, $message);
+        }
+
         return $this->render('service/show.html.twig', [
             'service' => $service,
+            'messageForm' => $form->createView()
         ]);
     }
 
@@ -101,5 +122,25 @@ class ServiceController extends AbstractController
         }
 
         return $this->redirectToRoute('app_services_liste');
+    }
+
+    /**
+     * @param Swift_Mailer $mailer
+     * @param Message $message
+     * @return Response
+     */
+    public function email(Swift_Mailer $mailer, Message $message): Response
+    {
+        $message->getMail();
+        // Création du mail
+        $mail = new Swift_Message();
+        $mail->setSubject('Envoi de mail depuis SF4');
+        $mail->setTo('alexendrain1412@gmail.com');
+        $mail->setBody(
+            $this->renderView($message),
+            'text/html'
+        );
+        // Envoi du mail
+        $mailer->send($mail);
     }
 }

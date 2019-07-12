@@ -144,6 +144,23 @@ main section#listeService footer {
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
 }
+main section#register, main section#register form {
+    display: flex;
+    flex-direction: column;
+}
+main section#register h1 {
+    text-align: center;
+}
+main section#register form {
+
+}
+main section#register form input:first-child, main section#register form input:nth-child(2) {
+    width: 10px;
+}
+main section#register form input {
+    width: 300px;
+}
+
 
 footer {
     width: 100%;

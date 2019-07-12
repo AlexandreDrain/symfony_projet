@@ -3,14 +3,35 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.falseRoles) }}
-        {{ form_row(registrationForm.userName) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword) }}
+    <section id="register">
 
-        <button class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+        <h1>Register</h1>
+
+        <form name="registration_form" method="post">
+            <label class="required">Choisissez votre role</label>
+            <div id="registration_form_falseRoles">
+                <input type="radio" id="registration_form_falseRoles_0" name="registration_form[falseRoles]"
+                       required="required" value="ROLE_GARAGISTE">
+                <label for="registration_form_falseRoles_0" class="required">Garagiste</label>
+                <input type="radio" id="registration_form_falseRoles_1" name="registration_form[falseRoles]"
+                       required="required" value="ROLE_CLIENT">
+                <label for="registration_form_falseRoles_1" class="required">Client</label>
+            </div>
+            <label for="registration_form_userName" class="">Nom d'utilisateur</label>
+            <input type="text" id="registration_form_userName" name="registration_form[userName]" required="required"
+                   maxlength="128">
+            <label for="registration_form_email" class="required">Email</label>
+            <input type="text" id="registration_form_email" name="registration_form[email]" required="required"
+                   maxlength="255">
+            <label for="registration_form_plainPassword" class="required">Mot de passe</label>
+            <input type="password" id="registration_form_plainPassword" name="registration_form[plainPassword]"
+                   required="required">
+
+            <input type="submit" value="S'inscrire">
+            <input type="hidden" id="registration_form__token" name="registration_form[_token]"
+                   value="O1vCyo8zlDwZ54Hl7SGnibaOf7MqWvyuE_1OGLrZxiQ">
+        </form>
+    </section>
+
 {% endblock %}

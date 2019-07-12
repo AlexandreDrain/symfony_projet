@@ -52,7 +52,3 @@ app_admin_user:
     resource: routes_perso/admin_user.yaml
     prefix: /admin/user
     name_prefix: admin_user_
-# ------------------ADMIN--------------------#
-app_email:
-    path: /email
-    controller: App\Controller\EmailController::index
