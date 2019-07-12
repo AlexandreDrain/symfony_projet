@@ -6,7 +6,10 @@
     <section id="listeService">
         {% for service in services %}
             <article>
-                <img src="{{ vich_uploader_asset(service, 'imageFile') }}" alt="Image de {{ service.label }}">
+                <figure>
+                    <img src="{{ vich_uploader_asset(service, 'imageFile') }}" alt="Image de {{ service.label }}">
+                    <figcaption>Photo du garage</figcaption>
+                </figure>
                 <h5>{{ service.label }}</h5>
                 <p><strong>Publié par : </strong>{{ service.publisher }}</p>
                 <p>{{ service.descriptionService | nl2br | slice(0,50)}}</p>

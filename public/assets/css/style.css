@@ -55,17 +55,6 @@ main section {
     background: lightgray;
     padding: 10px 0 0 0;
 }
-main section#listeService {
-    display: flex;
-    flex-wrap: wrap;
-}
-main section#listeService article {
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-    min-width: 300px;
-}
-
 main section h2 {
     text-align: center;
     color: black;
@@ -78,6 +67,84 @@ main section article {
 main section article p {
     font-family: 'Cantarell', Arial, SansSerif, "Times New Roman", cursive;
 }
+
+main section#listeService {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+main section#listeService article {
+    padding: 0;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    min-width: 300px;
+    height: auto;
+    margin: 20px 0;
+    border-radius: 10px;
+}
+main section#listeService article figure {
+    width: 300px;
+    height: auto;
+    min-width: 300px;
+}
+main section#listeService article figure img {
+    width: 100%;
+    height: auto;
+    min-width: 300px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+main section#listeService article figure figcaption {
+    display: none;
+}
+main section#listeService article h5 {
+    text-align: center;
+}
+main section#listeService article p {
+    padding: 5px 10px;
+}
+main section#listeService article a {
+    display: block;
+    cursor: pointer;
+    width: 75px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    border: 1px solid;
+    border-radius: .25em;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    text-decoration: none;
+}
+main section#listeService article a:first-child {
+    color: limegreen;
+    border: 1px solid limegreen;
+}
+main section#listeService article a:first-child:hover {
+    background: limegreen;
+    color: white;
+}
+
+main section#listeService article a:nth-child(2) {
+    color: orange;
+    border: 1px solid orange;
+}
+main section#listeService article a:nth-child(2):hover {
+    background: orange;
+    color: white;
+}
+
+main section#listeService footer {
+    position: relative;
+    bottom: 0;
+    padding: 5px 10px;
+    justify-content: space-between;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
 footer {
     width: 100%;
     height: auto;

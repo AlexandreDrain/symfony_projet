@@ -35,6 +35,10 @@
                 <th>Horaire d'ouverture</th>
                 <td><img style="max-width: 250px;" src="/assets/images/uploads/horaire/{{ service.imageHoraireName }}" class="card-img-top" alt="Horaire du garage de {{ service.publisher }}"></td>
             </tr>
+            <tr>
+                <th>M'envoyer un mail</th>
+                <td><a href="{{ path('app_email') }}" class="btn btn-outline-info">Cliquer ici !</a></td>
+            </tr>
         </tbody>
     </table>
 
