@@ -58,29 +58,12 @@ class ServiceController extends AbstractController
 
     /**
      * @param Service $service
-     * @param Request $request
-     * @param Message $message
-     * @param Swift_Mailer $mailer
      * @return Response
      */
-    public function show(Service $service, Request $request, Message $message, Swift_Mailer $mailer, UserInterface $user): Response
+    public function show(Service $service): Response
     {
-
-        $form = $this->createForm(MessageType::class, $message);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $message->setPublisher($user);
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($message);
-            $entityManager->flush();
-
-            $this->email($mailer, $message);
-        }
-
         return $this->render('service/show.html.twig', [
             'service' => $service,
-            'messageForm' => $form->createView()
         ]);
     }
 

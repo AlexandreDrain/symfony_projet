@@ -39,7 +39,7 @@
         </tr>
         </tbody>
     </table>
-
+{#
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
     <aside>M'envoyer un mail :
         {{ form_start(messageForm) }}
@@ -48,7 +48,7 @@
         {{ form_end(messaegForm) }}
     </aside>
     {% endif %}
-
+    #}
     <a href="{{ path('app_services_liste') }}" class="btn btn-outline-success">Retour vers la liste des produits</a>
     {% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_GARAGISTE') %}
         {% if service.getPublisher() == app.user %}

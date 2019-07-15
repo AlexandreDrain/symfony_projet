@@ -20,7 +20,7 @@
                     {% if service.getPublisher() == app.user and is_granted('ROLE_GARAGISTE')%}
                         <a href="{{ path('app_services_update', {'slug' : service.slug}) }}">Modifier</a>
                     {% endif %}
-                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    {% if is_granted('ROLE_SUPER_ADMIN') or service.getPublisher() == app.user %}
                         {% include '/service/_delete_form.html.twig' %}
                     {% endif %}
                 </footer>
