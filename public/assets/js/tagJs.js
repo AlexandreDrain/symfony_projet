@@ -1,1 +1,0 @@
-// TODO : copier coller le js depuis https://symfony.com/doc/current/form/form_collections.html

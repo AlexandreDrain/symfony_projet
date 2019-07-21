@@ -45,12 +45,6 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Service", mappedBy="publisher")
      */
     private $services;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="publisher")
-     */
-    private $messages;
-
     public function __construct()
     {
         $this->services = new ArrayCollection();
@@ -174,37 +168,6 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($service->getPublisher() === $this) {
                 $service->setPublisher(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Message[]
-     */
-    public function getMessages(): Collection
-    {
-        return $this->messages;
-    }
-
-    public function addMessage(Message $message): self
-    {
-        if (!$this->messages->contains($message)) {
-            $this->messages[] = $message;
-            $message->setPublisher($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMessage(Message $message): self
-    {
-        if ($this->messages->contains($message)) {
-            $this->messages->removeElement($message);
-            // set the owning side to null (unless already changed)
-            if ($message->getPublisher() === $this) {
-                $message->setPublisher(null);
             }
         }
 

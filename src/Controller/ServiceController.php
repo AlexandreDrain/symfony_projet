@@ -107,23 +107,5 @@ class ServiceController extends AbstractController
         return $this->redirectToRoute('app_services_liste');
     }
 
-    /**
-     * @param Swift_Mailer $mailer
-     * @param Message $message
-     * @return Response
-     */
-    public function email(Swift_Mailer $mailer, Message $message): Response
-    {
-        $message->getMail();
-        // Création du mail
-        $mail = new Swift_Message();
-        $mail->setSubject('Envoi de mail depuis SF4');
-        $mail->setTo('alexendrain1412@gmail.com');
-        $mail->setBody(
-            $this->renderView($message),
-            'text/html'
-        );
-        // Envoi du mail
-        $mailer->send($mail);
-    }
+
 }
