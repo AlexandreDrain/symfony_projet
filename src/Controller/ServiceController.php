@@ -2,9 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Message;
 use App\Entity\Service;
-use App\Form\MessageType;
 use App\Form\ServiceType;
 use App\Repository\ServiceRepository;
 use Doctrine\Common\Persistence\ObjectManager;

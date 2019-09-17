@@ -4,9 +4,14 @@
 
 {% block body %}
 
+    <form action="" method="post" class="register">
+    <h1>Créer votre compte !</h1>
+
     {{ form_start(registrationForm) }}
         {{ form_widget(registrationForm) }}
-        <input type="submit" value="S'inscrire" class="btn btn-outline-info">
+        <input type="submit" class="registration" value="S'inscrire">
     {{ form_end(registrationForm) }}
+
+    </form>
 
 {% endblock %}

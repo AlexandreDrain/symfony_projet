@@ -195,7 +195,7 @@ main section#register h1 {
     text-align: center;
 }
 main section#register form {
-
+    background: blue;
 }
 main section#register form input:first-child, main section#register form input:nth-child(2) {
     width: 10px;
@@ -204,6 +204,58 @@ main section#register form input {
     width: 300px;
 }
 
+form.register {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, SansSerif, "Times New Roman", cursive;
+}
+div#registration_form {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+div#registration_form div {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+div#registration_form div:last-child {
+    display: none;
+}
+div#registration_form div div#registration_form_falseRoles input#registration_form_falseRoles_0,
+div#registration_form div div#registration_form_falseRoles input#registration_form_falseRoles_1 {
+    width: 20px;
+    line-height: 50px;
+}
+div#registration_form div input{
+    border-radius: .25em;
+    border: 1px solid black;
+    width: 300px;
+}
+div#registration_form div input:hover {
+    border: 2px solid rgb(60, 138, 255);
+}
+form.register input.registration {  
+    margin-bottom: 10px;
+    display: block;
+    cursor: pointer;
+    width: auto;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid rgb(60, 138, 255);
+    color: rgb(60, 138, 255);
+    border-radius: .25em;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    text-decoration: none;
+}
+form.register input.registration:hover {
+    background: rgb(60, 138, 255);
+    color: white;
+}
 
 footer {
     width: 100%;
@@ -245,6 +297,9 @@ footer section:first-child a figure, figcaption {
         align-items: center;
     }
     header div {
-        border: 1px solid black;
+        border: none;
+    }
+    header div {
+        height: 50px;
     }
 }

@@ -45,10 +45,10 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Service", mappedBy="publisher")
      */
     private $services;
+    
     public function __construct()
     {
         $this->services = new ArrayCollection();
-        $this->messages = new ArrayCollection();
     }
 
 

@@ -19,9 +19,6 @@ class ServiceType extends AbstractType
             ->add('ImageFile', FileType::class, [
                 'label' => 'Choisir une image'
             ])
-            ->add('createdAt', null, [
-                'label' => 'Créé à :'
-            ])
             ->add('descriptionService')
             ->add('imageHoraireFile', FileType::class, [
                 'label' => 'Veuillez indiqué vos horaires d\'ouverture'
